@@ -1,17 +1,26 @@
 noclip = false
 game:GetService('RunService').Stepped:connect(function()
 if noclip then
-game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+	for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+	if child:IsA("BasePart") and child.CanCollide == true then
+		child.CanCollide = false
+	end
+	end
 end
 end)
-plr = game.Players.LocalPlayer
+
+plr = game:service'Players'.LocalPlayer
 mouse = plr:GetMouse()
 mouse.KeyDown:connect(function(key)
 
-if key == "e" then
+if key == "n" then
 noclip = not noclip
-game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+	if child:IsA("BasePart") and child.CanCollide == true then
+		child.CanCollide = false
+	end
+	end
 end
 end)
 print('Loaded')
-print('Press "E" to noclip')
+print('Press "n" to noclip')
